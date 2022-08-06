@@ -8,7 +8,7 @@ export default function EndId({games, mainGame}) {
       <section>
         <h1>{mainGame.name} unded up in the no. {games.indexOf(mainGame)} spot</h1>
         {games.map((game, index) => (
-            <div className="game">
+            <div className="game" key={index}>
               <p className={game._id === mainGame._id ? styles.blue : ""}>
                 <span>{index + 1}. </span>
                 {game.name}
