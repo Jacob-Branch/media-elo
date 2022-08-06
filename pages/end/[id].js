@@ -1,56 +1,21 @@
 import ClientPromise from "../../utils/mongo";
 import styles from "../../styles/Home.module.css"
 import {ObjectId} from "mongodb";
-import { useState } from "react";
-import {useRouter} from "next/router";
 
-export default function battleId({games, mainGame}) {
-  const [mainState, setMainState] = useState(mainGame);
-  const [battlerState, setBattlerState] = useState(games[0])
-  const navigate = useRouter().push
+export default function EndId({games, mainGame}) {
 
-  const end = (id) => {
-    navigate(`/end/${id}`)
-  }
-
-  const updatePoints = async (p1, p2, w) => {
-
-    let body = {
-      playerOne: p1,
-      playerTwo: p2,
-      playerOneW: w,
-      type: "pcgames"
-    }
-    let data = await fetch("/api/battle", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8'
-      },
-      body: JSON.stringify(body)
-    })
-    let points = await data.json()
-    setMainState({...mainState, points: points[0]})
-    setBattlerState({...battlerState, points: points[1]})
-
-    if (games.length === 1) {
-      end(mainState._id)
-    }
-  }
-  const nextMatch = () => {
-    games.shift()
-    setBattlerState(games[0])
-  }
   return (
       <section>
-        <h1>Battle</h1>
-        <p className={styles.blue}>{mainState.name} <span className="points">{mainState.points}pt</span></p>
-        <button onClick={() => updatePoints(mainState, battlerState, true)}>{mainState.name} is better</button>
-        <p>{battlerState.name} <span className="points">{battlerState.points}pt</span></p>
-        <button onClick={() => updatePoints(mainState, battlerState, false)}>{battlerState.name} is better</button>
-        <br/>
-        <br/>
-        <br/>
-        <button  onClick={nextMatch}>next matchup</button>
+        <h1>{mainGame.name} unded up in the no. {games.indexOf(mainGame)} spot</h1>
+        {games.map((game, index) => (
+            <div className="game">
+              <p className={game._id === mainGame._id ? styles.blue : ""}>
+                <span>{index + 1}. </span>
+                {game.name}
+                <span className="points"> {game.points}pt</span>
+              </p>
+            </div>
+        ))}
       </section>
   )
 }
@@ -62,7 +27,7 @@ export async function getServerSideProps(ctx) {
     let mainGame = await db.collection("pcgames").findOne({_id: new ObjectId(ctx.query.id)})
     let games = await db
         .collection("pcgames")
-        .aggregate([{$sort: {points: 1, name: 1}}])
+        .aggregate([{$sort: {points: -1, name: 1}}])
         .toArray()
     games = JSON.parse(JSON.stringify(games))
     mainGame = JSON.parse(JSON.stringify(mainGame))

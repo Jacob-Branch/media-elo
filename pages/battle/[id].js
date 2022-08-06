@@ -4,7 +4,7 @@ import {ObjectId} from "mongodb";
 import { useState } from "react";
 import {useRouter} from "next/router";
 
-export default function battleId({games, mainGame}) {
+export default function BattleId({games, mainGame}) {
   const [mainState, setMainState] = useState(mainGame);
   const [battlerState, setBattlerState] = useState(games[0])
   const navigate = useRouter().push
