@@ -1,0 +1,16 @@
+@use "../styles/variables" as vars;
+
+.media {
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  background-color: vars.$bg-light;
+  margin-bottom: 2rem;
+  cursor: pointer;
+
+  h3 {
+    color: vars.$text;
+  }
+  p {
+    color: vars.$brand;
+  }
+}
