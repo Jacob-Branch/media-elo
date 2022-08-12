@@ -10,16 +10,8 @@ export default async function handler(req, res) {
   let coll = await db.collection(type)
 
   if (req.method === "POST") {
-    let id;
     await coll.insertOne({name, type, points: 2000})
-        .then((res) => id = res.insertedId)
-    res.status(200).redirect(`/battle/${id}`)
-  }
-
-  else if (req.method === "GET") {
-    let data = await coll.find({}).toArray()
-    res.status(200)
-        .send(JSON.parse(JSON.stringify(data)))
+        .then((resMongo) => res.status(200).send(JSON.parse(JSON.stringify({id: resMongo.insertedId}))))
         .catch(err => console.log(err))
   }
 

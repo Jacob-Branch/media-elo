@@ -1,16 +1,41 @@
 @use "../styles/variables" as vars;
 
 .media {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+
   padding: 1rem 1.5rem;
   border-radius: 1rem;
   background-color: vars.$bg-light;
-  margin-bottom: 2rem;
   cursor: pointer;
+  list-style: none;
+  height: 96px;
 
   h3 {
     color: vars.$text;
+    width: 75%;
   }
+
   p {
     color: vars.$brand;
+  }
+
+  div {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: .75rem;
+    background: rgba(223, 45, 45, 0.2);
+    border-radius: 1rem;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
   }
 }

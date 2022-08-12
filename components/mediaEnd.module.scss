@@ -1,0 +1,22 @@
+@use "../styles/variables" as vars;
+
+.mediaEnd {
+  position: relative;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  background-color: vars.$bg-light;
+  list-style: none;
+
+  &.main {
+    border: 2px solid vars.$brand;
+  }
+
+  h3 {
+    color: vars.$text;
+    width: 75%;
+  }
+
+  p {
+    color: vars.$brand;
+  }
+}

@@ -1,0 +1,41 @@
+@use "variables" as vars;
+
+.end {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  header {
+    font-size: 2rem;
+
+    span {
+      color: vars.$brand;
+    }
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: minmax(300px, 500px);
+    gap: 1rem;
+    padding: 0;
+    margin: 2rem 0;
+
+    li {
+      &:last-of-type {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 73.5px;
+        width: 100%;
+
+        color: vars.$brand;
+        background: rgba(131, 129, 220, 0.2);
+        vertical-align: center;
+        border-radius: 1rem;
+        cursor: pointer;
+      }
+    }
+  }
+}

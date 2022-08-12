@@ -1,8 +1,9 @@
 import ClientPromise from "../../utils/mongo";
-import styles from "../../styles/Home.module.css"
+import styles from "../../styles/battle.module.scss"
 import {ObjectId} from "mongodb";
 import { useState } from "react";
 import {useRouter} from "next/router";
+import MediaBattle from "../../components/mediaBattle"
 
 export default function BattleId({games, mainGame}) {
   const [mainState, setMainState] = useState(mainGame);
@@ -10,7 +11,9 @@ export default function BattleId({games, mainGame}) {
   const navigate = useRouter().push
 
   const end = (id) => {
+    console.log("end")
     navigate(`/end/${id}`)
+    console.log("endend")
   }
 
   const updatePoints = async (p1, p2, w) => {
@@ -33,6 +36,7 @@ export default function BattleId({games, mainGame}) {
     setBattlerState({...battlerState, points: points[1]})
 
     if (games.length === 1) {
+      console.log("end")
       end(mainState._id)
     }
   }
@@ -41,16 +45,16 @@ export default function BattleId({games, mainGame}) {
     setBattlerState(games[0])
   }
   return (
-      <section>
-        <h1>Battle</h1>
-        <p className={styles.blue}>{mainState.name} <span className="points">{mainState.points}pt</span></p>
-        <button onClick={() => updatePoints(mainState, battlerState, true)}>{mainState.name} is better</button>
-        <p>{battlerState.name} <span className="points">{battlerState.points}pt</span></p>
-        <button onClick={() => updatePoints(mainState, battlerState, false)}>{battlerState.name} is better</button>
-        <br/>
-        <br/>
-        <br/>
-        <button  onClick={nextMatch}>next matchup</button>
+      <section className={styles.battle}>
+        <header>
+          <h1>Battle</h1>
+        </header>
+        <div>
+          <MediaBattle data={mainState} winFunc={() => updatePoints(mainState, battlerState, true)}/>
+          <MediaBattle data={battlerState} winFunc={() => updatePoints(mainState, battlerState, false)}/>
+        </div>
+        {games.length > 1 && <button  onClick={nextMatch}>next matchup</button>}
+
       </section>
   )
 }

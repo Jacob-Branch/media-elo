@@ -1,0 +1,14 @@
+@use "../styles/variables" as vars;
+
+.mediaBattle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem 1.5rem;
+  width: 100%;
+  max-width: 30rem;
+  background: vars.$bg-light;
+  border-radius: 1rem;
+}
