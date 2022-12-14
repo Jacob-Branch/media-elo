@@ -9,7 +9,7 @@ export default function Home() {
         <h1>Media elo</h1>
       </header>
       <p>Compare the media you love using one vs. one comparisons, based on how much you enjoyed that particular piece of media</p>
-      <Link href='/game' className='button'>Let's go!</Link>
+      <Link href='/game' className='button'>{"Let's go!"}</Link>
     </div>
   )
 }
