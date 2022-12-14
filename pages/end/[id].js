@@ -21,7 +21,7 @@ export default function EndId({games, mainGame}) {
           {games.map((game, index) => (
               <MediaEnd data={game} key={index} main={game._id === mainGame._id}/>
           ))}
-          <li onClick={() => navigate("/")}><p>Back home</p></li>
+          <li onClick={() => navigate("/game")}><p>Back home</p></li>
         </ul>
       </section>
   )

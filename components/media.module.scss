@@ -31,7 +31,13 @@
     height: 2.5rem;
     padding: .75rem;
     background: rgba(223, 45, 45, 0.2);
+    transition: background .3s ease-in-out;
     border-radius: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(223, 45, 45, 0.5);
+    }
 
     svg {
       width: 100%;

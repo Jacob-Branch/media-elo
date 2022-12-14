@@ -8,6 +8,7 @@ import MediaBattle from "../../components/mediaBattle"
 export default function BattleId({games, mainGame}) {
   const [mainState, setMainState] = useState(mainGame);
   const [battlerState, setBattlerState] = useState(games[0])
+  const [updated, setUpdated] = useState(false)
   const navigate = useRouter().push
 
   const end = (id) => {
@@ -17,6 +18,10 @@ export default function BattleId({games, mainGame}) {
   }
 
   const updatePoints = async (p1, p2, w) => {
+
+    if (updated) return;
+    console.log(updated)
+    setUpdated(true)
 
     let body = {
       playerOne: p1,
@@ -39,8 +44,10 @@ export default function BattleId({games, mainGame}) {
       console.log("end")
       end(mainState._id)
     }
+
   }
   const nextMatch = () => {
+    setUpdated(false)
     games.shift()
     setBattlerState(games[0])
   }

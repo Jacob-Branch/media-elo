@@ -1,20 +1,57 @@
+@use "./variables" as vars;
+
 .container {
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 
-  ul {
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
+  max-width: 100rem;
+  height: 100svh;
+  margin: 0 auto;
 
-    li {
-      &:first-of-type {
-        height: 96px;
+  h1 {
+    font-size: 4rem;
+  }
+
+  p {
+    margin-bottom: 2rem;
+  }
+
+  a {
+    position: relative;
+
+    &::before {
+      content: "Disclaimer!: the project is still under development, and features like Oauth (the current version of the app combines every users media) and pre-comparison elo estimations are still on the way!";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(calc(100% + 1rem));
+      width: 80vw;
+      max-width: 50rem;
+      padding: 1rem;
+      border-radius: 1rem;
+      background-color: vars.$bg-light;
+
+      color: vars.$red;
+      text-align: center;
+
+      opacity: 0;
+      transition: opacity .3s ease-in-out;
+
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    &:hover {
+      &::before {
+        opacity: 1;
       }
     }
   }
-}
-
-.blue {
-  color: #0070f3;
 }

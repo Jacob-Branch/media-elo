@@ -55,12 +55,18 @@ form {
       width: fit-content;
       padding: 1rem 1.5rem;
       cursor: pointer;
+
+      transition: background .3s ease-in-out;
+
+      &:hover {
+        background: rgba(131, 129, 220, 0.5);
+      }
     }
     margin: 0;
   }
 }
 
-button {
+button, .button {
   background: vars.$bg-light;
   border-radius: 1rem;
   border: none;
@@ -70,4 +76,9 @@ button {
   background: rgba(131, 129, 220, 0.2);
   width: fit-content;
   padding: 1rem 1.5rem;
+  transition: background .3s ease-in-out;
+
+  &:hover {
+    background: rgba(131, 129, 220, 0.5);
+  }
 }
